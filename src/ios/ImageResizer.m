@@ -53,10 +53,6 @@ static NSInteger count = 0;
 
     UIImage *tempImage = nil;
     CGSize targetSize = frameSize;
-    UIGraphicsBeginImageContext(targetSize);
-
-    CGRect thumbnailRect = CGRectMake(0, 0, 0, 0);
-    thumbnailRect.origin = CGPointMake(0.0,0.0);
 
     CGFloat currentWidth = sourceImage.size.width;
     CGFloat currentHeight = sourceImage.size.height;
@@ -75,6 +71,14 @@ static NSInteger count = 0;
     {
       targetWidth = (targetHeight * currentWidth) / currentHeight;
     }
+
+    targetSize.width = targetWidth;
+    targetSize.height = targetHeight;
+
+    UIGraphicsBeginImageContext(targetSize);
+
+    CGRect thumbnailRect = CGRectMake(0, 0, 0, 0);
+    thumbnailRect.origin = CGPointMake(0.0,0.0);
 
     thumbnailRect.size.width = targetWidth;
     thumbnailRect.size.height = targetHeight;
