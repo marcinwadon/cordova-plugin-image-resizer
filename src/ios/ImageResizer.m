@@ -57,8 +57,16 @@ static NSInteger count = 0;
 
     CGRect thumbnailRect = CGRectMake(0, 0, 0, 0);
     thumbnailRect.origin = CGPointMake(0.0,0.0);
-    thumbnailRect.size.width  = targetSize.width;
-    thumbnailRect.size.height = targetSize.height;
+
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat currentWidth = sourceImage.size.width;
+    CGFloat currentHeight = sourceImage.size.height;
+
+    CGFloat ratio = MIN(targetWidth/currentWidth, targetHeight/currentHeight);
+
+    thumbnailRect.size.width = ratio * targetWidth;
+    thumbnailRect.size.height = ratio * targetHeight;
 
     [sourceImage drawInRect:thumbnailRect];
 
